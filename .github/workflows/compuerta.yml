@@ -1,0 +1,35 @@
+name: Prueba de compuerta de aprobacion
+
+# QUE DEMUESTRA ESTA PRUEBA. Que un job que referencia un `environment` con revisores requeridos
+# DETIENE la ejecucion y espera una aprobacion humana, sin que nadie tenga que disparar nada: el run
+# sigue vivo y se reanuda solo cuando alguien aprueba. Es el mecanismo con el que se propone cubrir
+# la compuerta de entrada al marketplace, equivalente a CHAMA en el proceso de microservicios de BCP.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  # Todo lo automatico ocurre aqui: sellar, comprobar, decidir. Termina sin intervencion.
+  certify:
+    name: Comprobaciones automaticas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simular las comprobaciones de certificacion
+        run: |
+          echo "::notice::humo sobre el paquete sellado — OK"
+          echo "::notice::colision con el marketplace — OK"
+          echo "::notice::contrato MCP en vivo — OK"
+
+  # LA COMPUERTA. `environment` no dispara nada: FRENA. El run queda en «Waiting» hasta que un
+  # revisor requerido apruebe desde la interfaz. El GITHUB_TOKEN no puede aprobarse a si mismo, asi
+  # que la compuerta no se puede esquivar desde un workflow.
+  promote:
+    name: Promocion al marketplace
+    needs: certify
+    runs-on: ubuntu-latest
+    environment: marketplace-ruta-3
+    steps:
+      - name: Registrar quien aprobo y cuando
+        run: |
+          echo "::notice::aprobado — el run se reanudo tras la aprobacion humana"
+          echo "actor que reanudo la ejecucion: $GITHUB_ACTOR"
