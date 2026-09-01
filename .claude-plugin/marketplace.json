@@ -12,7 +12,7 @@
     {
       "name": "compuesto-publico",
       "description": "PRUEBA D: referencia a un skill que vive fuera del directorio del plugin, en repo publico.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "plugins/compuesto-publico"
     }
   ]
