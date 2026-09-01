@@ -1,0 +1,19 @@
+{
+  "name": "prueba-publico",
+  "owner": {
+    "name": "Plataforma Agentica (prueba de referencia en repo publico)",
+    "email": "plataforma-agentica@ejemplo.dev"
+  },
+  "metadata": {
+    "description": "PRUEBA: agrupacion POR REFERENCIA en un repositorio publico, replicando lo que hace github/awesome-copilot.",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "compuesto-publico",
+      "description": "PRUEBA D: referencia a un skill que vive fuera del directorio del plugin, en repo publico.",
+      "version": "0.1.0",
+      "source": "plugins/compuesto-publico"
+    }
+  ]
+}
